@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Важный вопрос</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #ffafbd, #ffc3a0); /* Мягкий розовый градиент */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow: hidden;
+            color: #d81b60; /* Глубокий розовый/красный цвет текста */
+        }
+
+        .container {
+            text-align: center;
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(216, 27, 96, 0.2);
+            border: 2px solid #ff4d6d;
+            max-width: 400px;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            height: 50px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            font-weight: bold;
+        }
+
+        #yesBtn {
+            background-color: #ff4d6d; /* Красный */
+            color: white;
+        }
+
+        #yesBtn:hover {
+            background-color: #ff758f;
+            transform: scale(1.1);
+        }
+
+        #noBtn {
+            background-color: #ffb3c1; /* Светло-розовый */
+            color: #d81b60;
+            position: absolute;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        #result {
+            font-size: 1.2rem;
+            line-height: 1.5;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div id="quiz">
+            <h1>Хотите купить Никите игру?</h1>
+            <div class="buttons">
+                <button id="yesBtn">Да</button>
+                <button id="noBtn">Нет</button>
+            </div>
+        </div>
+
+        <div id="result" class="hidden">
+            <p>📞 Позвоните Никите и спросите, какую игру он хочет!</p>
+        </div>
+    </div>
+
+    <script>
+        const noBtn = document.getElementById('noBtn');
+        const yesBtn = document.getElementById('yesBtn');
+        const quiz = document.getElementById('quiz');
+        const result = document.getElementById('result');
+
+        // Функция побега кнопки "Нет"
+        noBtn.addEventListener('mouseover', () => {
+            // Вычисляем случайные координаты внутри окна
+            const x = Math.random() * (window.innerWidth - noBtn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - noBtn.offsetHeight);
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = x + 'px';
+            noBtn.style.top = y + 'px';
+        });
+
+        // Обработка нажатия на "Да"
+        yesBtn.addEventListener('click', () => {
+            quiz.classList.add('hidden');
+            result.classList.remove('hidden');
+        });
+    </script>
+</body>
+</html>
